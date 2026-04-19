@@ -3,6 +3,9 @@ title: No-Bake Mango Cheesecake (Eggless)
 date: 2026-04-19
 categories: [Recipes]
 tags: [dessert, mango, cheesecake, no-bake, eggless, summer]
+image:
+  path: /assets/images/mango.png
+  alt: No-Bake Mango Cheesecake
 ---
 
 This no-bake mango cheesecake is creamy, fruity, and comes together without turning on the oven — or using a single egg. Perfect for summer when mangoes are at their best.
