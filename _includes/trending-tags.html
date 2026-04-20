@@ -1,0 +1,106 @@
+<!-- The trending tags list, filtered by category group -->
+
+{% assign MAX = 10 %}
+
+{% assign _tech_cats = "Tech + AI,AI Videos" | split: "," %}
+{% assign _recipe_cats = "Recipes" | split: "," %}
+
+<!-- Determine current page's category context -->
+{% assign _is_tech = false %}
+{% assign _is_recipe = false %}
+
+{% if page.type == "category" %}
+  {% if _tech_cats contains page.title %}
+    {% assign _is_tech = true %}
+  {% elsif _recipe_cats contains page.title %}
+    {% assign _is_recipe = true %}
+  {% endif %}
+{% elsif page.categories %}
+  {% for _cat in page.categories %}
+    {% if _tech_cats contains _cat %}
+      {% assign _is_tech = true %}
+    {% endif %}
+    {% if _recipe_cats contains _cat %}
+      {% assign _is_recipe = true %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+<!-- Collect tags only from matching posts -->
+{% assign _tag_counts = '' | split: '' %}
+
+{% for post in site.posts %}
+  {% assign _post_cats = post.categories %}
+  {% assign _include_post = false %}
+
+  {% if _is_tech %}
+    {% for _cat in _post_cats %}
+      {% if _tech_cats contains _cat %}
+        {% assign _include_post = true %}
+      {% endif %}
+    {% endfor %}
+  {% elsif _is_recipe %}
+    {% for _cat in _post_cats %}
+      {% if _recipe_cats contains _cat %}
+        {% assign _include_post = true %}
+      {% endif %}
+    {% endfor %}
+  {% else %}
+    {% assign _include_post = true %}
+  {% endif %}
+
+  {% if _include_post %}
+    {% for _tag in post.tags %}
+      {% assign _tag_counts = _tag_counts | push: _tag %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+
+<!-- Build unique tag list with counts -->
+{% assign _unique_tags = _tag_counts | uniq %}
+
+{% assign size_list = '' | split: '' %}
+{% assign tag_list = '' | split: '' %}
+
+{% for tag_name in _unique_tags %}
+  {% assign size = 0 %}
+  {% for t in _tag_counts %}
+    {% if t == tag_name %}
+      {% assign size = size | plus: 1 %}
+    {% endif %}
+  {% endfor %}
+  {% assign size_list = size_list | push: size %}
+  {% assign tag_str = tag_name | append: '::' | append: size %}
+  {% assign tag_list = tag_list | push: tag_str %}
+{% endfor %}
+
+{% assign size_list = size_list | sort | reverse %}
+{% assign tag_list = tag_list | sort_natural %}
+
+{% assign trending_tags = '' | split: '' %}
+
+{% for size in size_list limit: MAX %}
+  {% for tag_str in tag_list %}
+    {% assign tag = tag_str | split: '::' %}
+    {% assign tag_name = tag | first %}
+    {% assign tag_size = tag | last | plus: 0 %}
+    {% if tag_size == size %}
+      {% unless trending_tags contains tag_name %}
+        {% assign trending_tags = trending_tags | push: tag_name %}
+        {% break %}
+      {% endunless %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+{% if trending_tags.size > 0 %}
+  <section>
+    <h2 class="panel-heading">{{- site.data.locales[include.lang].panel.trending_tags -}}</h2>
+    <div class="d-flex flex-wrap mt-3 mb-1 me-3">
+      {% for tag_name in trending_tags %}
+        {% assign url = tag_name | slugify | url_encode | prepend: '/tags/' | append: '/' %}
+        <a class="post-tag btn btn-outline-primary" href="{{ url | relative_url }}">{{ tag_name }}</a>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
