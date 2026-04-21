@@ -8,7 +8,7 @@ image:
   alt: How I Make AI Videos Using Veo3
 ---
 
-I've been making AI videos for a while now, and honestly — VEO3 changed everything. The quality is cinematic, the image-to-video is insanely consistent, and once you nail the workflow, it's almost addictive. Here's my exact process, start to finish.
+I've been making AI videos for a while now, and honestly — Veo3 changed everything. The quality is cinematic, the image-to-video is insanely consistent, and once you nail the workflow, it's almost addictive. Here's my exact process, start to finish.
 
 ---
 
@@ -18,14 +18,14 @@ I've been making AI videos for a while now, and honestly — VEO3 changed everyt
 |---|---|
 | ChatGPT / Claude | Building my project context and generating prompts |
 | Google Flow (Nano Banana Pro) | Generating images and videos |
-| VEO3 inside Flow | Animating my images into videos |
-| Google AI Ultra / Pro | Subscription to access VEO3 |
+| Veo3 inside Flow | Animating my images into videos |
+| Google AI Ultra / Pro | Subscription to access Veo3 |
 
 ---
 
 ## Subscription Options
 
-Before anything, you need access to VEO3. Here's what's available:
+Before anything, you need access to Veo3. Here's what's available:
 
 | Plan | Price | What You Get |
 |---|---|---|
@@ -68,7 +68,7 @@ Generate image and video prompts in this style.
 Once the project is set up, I ask Claude or ChatGPT to write me:
 
 1. An **image prompt** (for Nano Banana Pro inside Google Flow)
-2. A **video prompt** (for VEO3 to animate that image)
+2. A **video prompt** (for Veo3 to animate that image)
 
 I give the AI creative liberty here — I find the results are better when I don't over-constrain it. If I don't love what it produces, I just ask for variations.
 
@@ -83,7 +83,7 @@ Ultra-detailed, photorealistic, 8K.
 
 ![Example AI generated image — solarpunk cityscape](/assets/images/Solarpunk.png)
 
-**Example video prompt for VEO3:**
+**Example video prompt for Veo3:**
 
 ```
 Camera slowly pushes forward through the hanging gardens of a solarpunk 
@@ -101,13 +101,13 @@ I head to **[Google Flow → labs.google/fx/tools/flow](https://labs.google/fx/t
 
 I paste in my image prompt and generate. I usually run 2–3 variations and pick the one with the best composition and lighting for animation.
 
-> 🎨 **Tip:** Pick images with clear depth — a foreground subject, midground detail, and background. These animate the best with VEO3 because the AI has layers to work with.
+> 🎨 **Tip:** Pick images with clear depth — a foreground subject, midground detail, and background. These animate the best with Veo3 because the AI has layers to work with.
 
-### Step 4 — Animate It with VEO3 (Image to Video)
+### Step 4 — Animate It with Veo3 (Image to Video)
 
-This is where the magic happens. I take the image I just generated and feed it into **VEO3 inside Flow** as the starting frame, then paste in my video prompt.
+This is where the magic happens. I take the image I just generated and feed it into **Veo3 inside Flow** as the starting frame, then paste in my video prompt.
 
-VEO3 uses the image as a visual anchor and the prompt to direct motion, camera movement, lighting change, and audio. The result is a video that looks like *your image* came to life — not some random AI hallucination.
+Veo3 uses the image as a visual anchor and the prompt to direct motion, camera movement, lighting change, and audio. The result is a video that looks like *your image* came to life — not some random AI hallucination.
 
 Each generation produces an **8-second clip**. I usually generate 2–3 takes of the same prompt and pick the best one.
 
@@ -134,7 +134,7 @@ Photorealistic, IMAX quality.
 
 ## Tips
 
-- **Keep your image and video prompts consistent** — if your image is warm-toned golden hour, don't prompt VEO3 for a cold blue moonlit scene. Conflicting styles cause weird results.
+- **Keep your image and video prompts consistent** — if your image is warm-toned golden hour, don't prompt Veo3 for a cold blue moonlit scene. Conflicting styles cause weird results.
 - **Use Claude or ChatGPT Projects** so your prompt style stays consistent across sessions — the AI remembers your tone and keywords without you re-explaining every time.
 - **Generate the image first, always** — never skip straight to text-to-video. Image-to-video gives you far more control over the look and consistency of the output.
 - **Nano Banana Pro is the sweet spot** for image generation inside Flow — it gives you photorealistic detail without over-smoothing faces and textures the way some other models do.
@@ -151,7 +151,7 @@ Photorealistic, IMAX quality.
 | 1 | Claude / ChatGPT | Build project with keywords + style references |
 | 2 | Claude / ChatGPT | Generate image prompt + video prompt |
 | 3 | Nano Banana Pro (Google Flow) | Generate the base image |
-| 4 | VEO3 (Google Flow) | Animate image using video prompt |
+| 4 | Veo3 (Google Flow) | Animate image using video prompt |
 | 5 | Flow editor | Trim, refine, export |
 
 ---
@@ -160,7 +160,7 @@ Photorealistic, IMAX quality.
 
 | | |
 |---|---|
-| Time per video (end-to-end) | 15–30 minutes |
+| Time per video (end-to-end) | 1–2 minutes |
 | Credits per 8-sec clip | 20 credits |
 | Videos per month on Pro plan | ~50 clips (1,000 credits) |
 | Videos per month on Ultra plan | ~1,250 clips (25,000 credits) |
