@@ -1,11 +1,11 @@
 ---
 title: How I Make AI Videos Using Veo3 (My Full Workflow)
 date: 2026-04-21
-categories: [AI Tools]
+categories: [Tech + AI]
 tags: [veo3, ai-video, google-flow, nano-banana, image-to-video, chatgpt, claude, prompt-engineering, content-creation]
 image:
   path: /assets/images/Cherryblossom.png
-  alt: How I Make AI Videos Using VEO3
+  alt: How I Make AI Videos Using Veo3
 ---
 
 I've been making AI videos for a while now, and honestly — VEO3 changed everything. The quality is cinematic, the image-to-video is insanely consistent, and once you nail the workflow, it's almost addictive. Here's my exact process, start to finish.
