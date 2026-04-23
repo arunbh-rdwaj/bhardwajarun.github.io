@@ -27,20 +27,19 @@
 {% endif %}
 
 <!-- Collect tags only from matching posts -->
-{% assign _tag_counts = '' | split: '' %}
+{% assign _all_tags = '' | split: '' %}
 
 {% for post in site.posts %}
-  {% assign _post_cats = post.categories %}
   {% assign _include_post = false %}
 
   {% if _is_tech %}
-    {% for _cat in _post_cats %}
+    {% for _cat in post.categories %}
       {% if _tech_cats contains _cat %}
         {% assign _include_post = true %}
       {% endif %}
     {% endfor %}
   {% elsif _is_recipe %}
-    {% for _cat in _post_cats %}
+    {% for _cat in post.categories %}
       {% if _recipe_cats contains _cat %}
         {% assign _include_post = true %}
       {% endif %}
@@ -51,46 +50,36 @@
 
   {% if _include_post %}
     {% for _tag in post.tags %}
-      {% assign _tag_counts = _tag_counts | push: _tag %}
+      {% assign _all_tags = _all_tags | push: _tag %}
     {% endfor %}
   {% endif %}
 {% endfor %}
 
-<!-- Build unique tag list with counts -->
-{% assign _unique_tags = _tag_counts | uniq %}
-
-{% assign size_list = '' | split: '' %}
-{% assign tag_list = '' | split: '' %}
+<!-- Build zero-padded count::tag strings for sort-based frequency ranking -->
+{% assign _unique_tags = _all_tags | uniq %}
+{% assign _sortable = '' | split: '' %}
 
 {% for tag_name in _unique_tags %}
-  {% assign size = 0 %}
-  {% for t in _tag_counts %}
+  {% assign _count = 0 %}
+  {% for t in _all_tags %}
     {% if t == tag_name %}
-      {% assign size = size | plus: 1 %}
+      {% assign _count = _count | plus: 1 %}
     {% endif %}
   {% endfor %}
-  {% assign size_list = size_list | push: size %}
-  {% assign tag_str = tag_name | append: '::' | append: size %}
-  {% assign tag_list = tag_list | push: tag_str %}
+  <!-- Zero-pad count to 4 digits so lexicographic sort == numeric sort -->
+  {% assign _count_str = _count | append: '' %}
+  {% assign _padded = '0000' | append: _count_str | slice: -4, 4 %}
+  {% assign _entry = _padded | append: '::' | append: tag_name %}
+  {% assign _sortable = _sortable | push: _entry %}
 {% endfor %}
 
-{% assign size_list = size_list | sort | reverse %}
-{% assign tag_list = tag_list | sort_natural %}
+{% assign _sortable = _sortable | sort | reverse %}
 
 {% assign trending_tags = '' | split: '' %}
-
-{% for size in size_list limit: MAX %}
-  {% for tag_str in tag_list %}
-    {% assign tag = tag_str | split: '::' %}
-    {% assign tag_name = tag | first %}
-    {% assign tag_size = tag | last | plus: 0 %}
-    {% if tag_size == size %}
-      {% unless trending_tags contains tag_name %}
-        {% assign trending_tags = trending_tags | push: tag_name %}
-        {% break %}
-      {% endunless %}
-    {% endif %}
-  {% endfor %}
+{% for entry in _sortable limit: MAX %}
+  {% assign _parts = entry | split: '::' %}
+  {% assign _tag_name = _parts[1] %}
+  {% assign trending_tags = trending_tags | push: _tag_name %}
 {% endfor %}
 
 {% if trending_tags.size > 0 %}
