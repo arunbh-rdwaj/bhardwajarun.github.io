@@ -1,7 +1,7 @@
 ---
 title: GPT-5.5 Is Here — Everything You Need to Know
 date: 2026-04-24
-categories: [AI Tools]
+categories: [Tech + AI]
 tags: [chatgpt, gpt-5.5, openai, ai, codex, agentic-ai, llm, benchmarks, pricing]
 image:
   path: /assets/images/gpt-5-5.png
